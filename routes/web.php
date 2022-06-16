@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DataController;
+use App\Http\Controllers\PizzaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +18,6 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::resource('pizza', \App\Http\Controllers\DataController::class);
+Route::resource('pizza', \App\Http\Controllers\PizzaController::class);
 
-Route::post("/",[DataController::class,'store']);
 

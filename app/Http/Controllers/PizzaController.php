@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pizza;
 
-class DataController extends Controller
+class PizzaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DataController extends Controller
      */
     public function index()
     {
-//        $pizza = Pizza::all();
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view("create");
     }
 
     /**
@@ -35,9 +35,11 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
-//        $request=>
-
-//        return  redirect("../");
+        $pizza = new Pizza();
+        $pizza->pizza_name = $request->pizza_name;
+        $pizza->pizza_base = $request->pizza_base;
+        $pizza->pizza_quantity = $request->pizza_quantity;
+        $pizza->save();
     }
 
     /**
