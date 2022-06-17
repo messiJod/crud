@@ -16,7 +16,7 @@ use App\Http\Controllers\PizzaController;
 
 Route::get('/', function () {
     return view('homepage');
-});
+})->name("homepage");
 
 Route::resource('pizza', \App\Http\Controllers\PizzaController::class);
 

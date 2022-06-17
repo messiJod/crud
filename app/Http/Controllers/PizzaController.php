@@ -14,7 +14,8 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        //
+        $pizza = Pizza::all();
+        return  view("pizza",['pizza'=>$pizza]);
     }
 
     /**
@@ -40,6 +41,7 @@ class PizzaController extends Controller
         $pizza->pizza_base = $request->pizza_base;
         $pizza->pizza_quantity = $request->pizza_quantity;
         $pizza->save();
+        return back();
     }
 
     /**
