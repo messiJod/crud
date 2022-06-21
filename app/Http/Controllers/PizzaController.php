@@ -15,7 +15,7 @@ class PizzaController extends Controller
     public function index()
     {
         $pizza = Pizza::all();
-        return  view("pizza",['pizza'=>$pizza]);
+        return view("pizza",['pizza'=>$pizza]);
     }
 
     /**
@@ -36,12 +36,18 @@ class PizzaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'pizza_name'=>'required',
+            'pizza_base'=>'required',
+            'pizza_quantity'=>'required'
+        ]);
+
         $pizza = new Pizza();
         $pizza->pizza_name = $request->pizza_name;
         $pizza->pizza_base = $request->pizza_base;
         $pizza->pizza_quantity = $request->pizza_quantity;
         $pizza->save();
-        return back();
+        return redirect('pizza')->with('status', 'Order taken Successfully');
     }
 
     /**
@@ -52,7 +58,7 @@ class PizzaController extends Controller
      */
     public function show($id)
     {
-        //
+//
     }
 
     /**
@@ -63,7 +69,8 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pizza = Pizza::find($id);
+        return view('edit',['pizza'=>$pizza]);
     }
 
     /**
@@ -75,7 +82,12 @@ class PizzaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pizza = Pizza::findOrFail($id);
+        $pizza->pizza_name = $request->pizza_name;
+        $pizza->pizza_base = $request->pizza_base;
+        $pizza->pizza_quantity = $request->pizza_quantity;
+        $pizza->update();
+        return redirect('pizza')->with('status','Updated Successfully');
     }
 
     /**
@@ -86,6 +98,8 @@ class PizzaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pizza =Pizza::find($id);
+        $pizza->delete();
+        return redirect('pizza')->with('status','Deleted Successfully');
     }
 }

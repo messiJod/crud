@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="flex justify-center items-center min-h-screen bg-gray-300">
+<body class="flex justify-center items-center min-h-screen bg-gradient-to-tl from-black to-white">
 <div class="container">
+    <div class="text-6xl text-center my-5 text-white">Welcome to Pizza Ordering Portal</div>
         @yield('content')
 </div>
 
